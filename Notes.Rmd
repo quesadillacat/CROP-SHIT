@@ -58,6 +58,9 @@ check FAM signal fluoro vs HEX signal fluoro
 
 ## SNP Chip Genotyping
 
+Check the [relevant R script](MK130_SNP_genetic_diversity_script.R) for any
+missing notes here on out!
+
 Brassica 60k illumina infinium^TM SNP genotyping array
 
 60k snps on this chip
@@ -87,3 +90,18 @@ file persample
 
 winter types reduced genetic diversity since the harsher winter introduced
 genetic bottlenecks
+
+### Look at different measures of genetic diversity
+
+- Jost's D per Locus (fairly new)
+  - H_o observed heterozyg
+  - H_s expected heterozyg, within subpop (avg)
+  - H_t expected heterozyg, pop
+  
+  
+### Selective sweep
+
+- shows you there is more diversity at a locus in one subpopulation than others
+- indicates is could be useful for adaptation
+- then go and try to find the genes themselves (GWAS)
+- first step towards getting into the evolutionary history of a species
