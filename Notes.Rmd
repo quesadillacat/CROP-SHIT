@@ -1,0 +1,86 @@
+---
+title: "Notes"
+author: "Sammi Johnson"
+date: "2025-12-03"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Objective: KASP analysis
+
+## Rlm7
+
+- allele of the gene wall-assoc kinase-like (WAKL)
+- resistance to blackleg disease
+- resistance is race-specific
+  - AvrLm7 resistant to neither
+  - AvrLm4-7 resistant to rLm-4 and rLm-7
+  
+  
+## KASP Marker
+
+today we'll use a specific kasp marker to screen our 12 genos for our practical
+(6 per day)
+
+quencher is outcompeted when the allele we're testing for is present
+- ergo, presence makes fluorescent
+
+
+### PCR
+
+Master mix:
+- ddNTPs
+- magnesium
+- dnaases
+- primers
+- buffer
+
+Kasp master mix + 9.2 µl KASP primers mixture, the latter containing:
+- common primer
+- allele specific primer for allele A
+- allele specific primer for allele B
+- distilled water
+
+
+384 well PCR plate + template control (using distilled water instead of DNA)
+
+## KASP Analysis
+
+Do this during the PCR
+
+check FAM signal fluoro vs HEX signal fluoro
+- clusters into homozygous on X, homozyg on Y, hetero in between them
+- or cluster at origin for control or absence of either allele
+
+
+## SNP Chip Genotyping
+
+Brassica 60k illumina infinium^TM SNP genotyping array
+
+60k snps on this chip
+- actually 52161 (presumably some nearest 2^n)
+- actually nope! it's because some of the snps always fail and they round up 🙃
+
+### IUPAC code for nucleotides
+(Aside from ACTG):
+
+- R g|a
+- Y t|c pYramidin
+- M a|c aMino
+- K
+- S
+- W
+- H
+- B
+- V
+- D
+- N aNy
+
+
+SNP chip can be used for mapping, genotyping, LD (isn't that just mapping?)
+
+
+file persample
