@@ -1,0 +1,102 @@
+---
+title: "README"
+author: "Alisa Anjulie / Sammi Johnson"
+date: "2025-12-05"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Notes
+
+## Primary objectives:
+- Evaluate multiple genotypes based on their traits
+- Calculate Multi-Trait Score to assess overall performance for each genotype.
+- Use PCA to visualize phenotypic or genetic variability among genotypes.
+- Select three genotypes that combine:
+- high performance/quality (Multi-Trait-Score) and
+- High genetic diversity  (PCA)
+
+
+## Multi-Trait Score
+ 
+We wanna combine several meaningful traits into a single numerical value that reflects the overall performance of each genotype.
+This score is based only on traits that show clear and significant! genetic variation.
+ 
+### BLUP = Best Linear Unbiased Prediction
+A statistical estimate of the genetic performance of a genotype. BLUPs represent the genetic value of a genotype for a trait!
+
+Corrects for:
+- environmental effects
+- replicate/block effects
+- random error
+ 
+### EBLUP = Estimated BLUP
+- This is simply: EBLUP = BLUP + grand mean
+- BLUPs alone are centered around zero so they are sucky to read
+- EBLUPs shift the predictions back to the original trait scale, making them comparable and interpretable.
+- For PCA and multi-trait scoring, EBLUPs are typically used so we are doing that, too.
+ 
+
+## Traits Included in the Multi-Trait Score
+Only traits with a significant genotype effect (p < 0.05)
+ 
+Included traits (BLUP/EBLUP used):
+- SQI (Seed Quality Index) this I have calculated using the measured traits from the seed quality sheet they provided
+- CCM (Chlorophyll Content)
+- HGW (Hundred Grain Weight)
+- Fresh Mass (FM) 
+  - "After sampling" was incomplete and I left it out because I didn't see the use of it.
+- Dry Weight (DW)
+- Plant Height (PH) 
+  - Not sure about this one, I extracted the BLUPs and EBLUPs… differences were significant too, but is it really a genotypical trait or an environmental one instead?
+
+## Traits Excluded from the Multi-Trait Score
+I excluded them because the genotype had no significant effect on the trait (Flowering Time) or because I was uncertain.
+ 
+Flowering Type (FT): Genotype had no significant effect on flowering type
+BBCH stage: See questions below
+
+
+## What I did so far:
+ 
+- Extracted BLUPS and EBLUPS for the relevant traits
+- Calculated Means for FT and BBCH in case we want to use them for PCA
+- Put the data into an excel file for overview
+
+## What needs to be done:
+ 
+1. Deciding which PCAs are useful and relevant
+2. Sorting and categorizing traits to decide which will be used in which PCA
+3. Doing the PCAs
+4. Calculating the Multi-Trait Score
+5. The presentation itself obviously
+6. Probably loads more shit I’m not thinking of rn
+
+## Questions (bad) :
+ 
+- Which traits do we include in the PCAs?
+- Do we include only EBLUPS in PCAs? Or can means be used from traits that have no effect on genotype? 
+  - Maybe BBCH and FT for developmental PCA? DOES THAT EVEN MAKE SENSE?
+- What kind of PCAs are we gonna do?
+ 
+ 
+### BBCH:
+- How do we handle this trait? Is it influenced strongly genetically or is it environmental?
+- Is it a performance trait? Or a diversity trait? Phenological diversity vs perfomance quality?
+- Is higher BBCH = Better? Or should it only be included in a developmental PCA?
+- Honestly same questions regarding Plant Height. But isn't BBCH ordinal and PH continuous??
+
+
+
+
+## Questions (good):
+(Qs I would like to answer with PCAs)
+ 
+- Which of these traits explain most of the performance variation?
+- Which genotypes perform similarly across all traits?
+- Are high-scoring genotypes diverse or not? Are top-performers clustering tightly or spread out?
+- Do some traits co-vary?
+- Are there like.. How do you say in english? Trade-offs? Like High something but low something else?

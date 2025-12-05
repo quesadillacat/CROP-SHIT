@@ -105,3 +105,6 @@ genetic bottlenecks
 - indicates is could be useful for adaptation
 - then go and try to find the genes themselves (GWAS)
 - first step towards getting into the evolutionary history of a species
+
+
+select 3 for winter or spring oilseed rape program
