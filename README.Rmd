@@ -2,12 +2,122 @@
 title: "README"
 author: "Alisa Anjulie / Sammi Johnson"
 date: "2025-12-05"
-output: html_document
+output: pdf_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+# Instructions
+
+## Your Presentations
+Your presentations should take 10 min, so 5 min per person, plus 10 min
+questions from the audience (including me). The ability to answer questions
+will be taken into account.
+Each group will have a different set of plants, so your results will all be a bit
+different.
+**Your task is to select three accessions as donors for a future breeding
+program on winter oilseed rape.** They should be genetically as diverse as
+possible, but still be as adapted as possible.
+In your presentation, you have to justify your selection.
+
+## Your Data
+You will have two data sets: phenotyping data from today as well as
+genotypic data from next time (3./4. 12.25). Both can and should be used for
+the presentation. There is no rule of how you distribute the work among
+you, as long as both of you are presenting.
+If you want more data, feel free to ask for it – the diversity set has been
+heavily used in research in the last decades…
+
+## Scoring
+- Structure of the talk (2)
+- Description of methods (2)
+- Scientific quality of the figures, tables etc. (2)
+- Arguments for selection (4)
+- Presentation style (3)
+- Ability to answer questions correctly (2)
+
+## Which Traits Are Measured And Why?
+
+### Seed Quality
+
+> „Wild type rapeseed contained different antinutritive compounds, limiting use as
+feed or food.
+>
+Discovery of the accession ‚Liho‘ in 1963 with
+strongly reduced content in erucic acid lead to
+the development of ‚0 rapeseed‘ – suitable for
+human consumption.
+>
+Shortly afterwards, discovery of the accession
+‚Bronowski‘ with reduced glucosinolate
+content allowed development of ‚00 rapeseed‘
+– suitable as animal feed and turning rapeseed
+into a profitable crop”
+
+**Takeaway:** seed quality corresponds with lower antinutrients like erucic acid 
+and glucosinolate content.
+
+### Seed Weight
+
+> „Hundred grain weight is an important yield component”
+
+**Takeaway:** Oilseed rape harvests the seed of course, so we want them as big and
+(getting to this with yield later) as many of them per plant as possible.
+
+### Plant Height And Biomass (Fresh And Dry)
+
+> „Plant height and biomass are indicators of source capacity”
+
+**Takeaway:** TBD
+
+### Plant Development
+
+> „Plant development needs to be perfectly synchronized”
+
+Question for us to answer: What development do we want for this type of crop?
+Is faster development actually worse?
+
+**Takeaway:** TBD
+
+### Chlorophyll Content
+
+> „Chlorophyll content is a measure of N supply and stress level”
+
+Question for us: What chlorophyll content is optimal for WOSR?
+
+**Takeaway:** TBD
+
+## Plant Material
+> „I selected 12 diverse accessions of
+Brassica napus (rapeseed) from a
+larger diversity set (>500
+accessions).
+They were grown in the
+greenhouse in pots in 5 replicates
+under Standard conditions for 5
+weeks. Details can be found in the
+document
+„MP258_plant_cultivation.pdf“.”
+
+|    ASSYST_ID    |    Name                       |    TYPE       |
+| :-------------- | :---------------------------- | :------------ |
+| BnASSYST-078    | Express 617                   | Winter OSR    |
+| BnASSYST-120    | Darmor                        | Winter OSR    |
+| BnASSYST-145    | Hokkai 3-Go                   | Winter OSR    |
+| BnASSYST-210    | RED RUSSIAN                   | Siberian kale |
+| BnASSYST-211    | SIBERISCHE_BOERENKOOL         | Siberian kale |
+| BnASSYST-219    | GRÜNER SCHNITTKOHL            | Siberian kale |
+| BnASSYST-271    | Liho                          | Spring OSR    |
+| BnASSYST-273    | Bronowski                     | Spring OSR    |
+| BnASSYST-290    | Ability                       | Spring OSR    |
+| BnASSYST-419    | Angus                         | swede         |
+| BnASSYST-424    | Conqueror Bronze Green Top    | swede         |
+| BnASSYST-427    | Essex Model                   | swede         |
+
+
+
 
 # Notes
 
