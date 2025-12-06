@@ -129,4 +129,10 @@ document
 - high performance/quality (Multi-Trait-Score) and
 - High genetic diversity  (PCA)
 
+# TO-DO List:
+- Interpret the data from the Practical 2 script
+- -> Subpopulation differentiation: Where exactly does the genetic variation come from, what are those genes?
+- Find out how BBCH plays into all this
+- Calculate the multi-trait-score
+- Decide for genotypes based on variation and performance.
 
