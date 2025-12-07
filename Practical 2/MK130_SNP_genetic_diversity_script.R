@@ -17,7 +17,7 @@ library("hierfstat")
 # LOAD and FORMAT data
 ###########################################################################
 
-snp<-read.table(file="MK130_60k_ASSYST_selected.txt", header =T)
+snp<-read.table(file="MK130_60k_ASSYST_selected.txt", header = T)
 
 # we need to transpose the data for the package
 t_snp<-data.frame(t(snp))
@@ -37,10 +37,10 @@ population<-as.character(t_snp$type)
 t_snp<-t_snp[,-1]
 
 ####to reduce computing time and allow easy display, we only look at Chromosome A01:
-t_snp<-t_snp[,-c(2674:52157)]
+t_snp_a01<-t_snp[,-c(2674:52157)]
 
 # convert to genind object
-snp_data<-df2genind(t_snp, ploidy=2, ind.names=ind, pop=population, sep="")
+snp_data<-df2genind(t_snp_a01, ploidy=2, ind.names=ind, pop=population, sep="")
 # look at it
 snp_data
 
@@ -79,7 +79,7 @@ plot(number_of_alleles, xlab="Loci number", ylab="Number of alleles",
 
 # calculate allele richness
 allrich<-allelic.richness(snp_data,min.n=NULL,diploid=TRUE)
-head(allrich$Ar, 5)
+head(allrich$Ar, 5) # head() call unnecessary?
 
 # calculate observed and expected heterozygosity
 # using adegenet
