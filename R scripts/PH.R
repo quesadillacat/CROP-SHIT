@@ -4,6 +4,9 @@ library(tidyr)
 library(dplyr)
 library(lme4)
 library(lmerTest)
+library(multcomp)
+library(multcompView)
+library(emmeans)
 
 # Loading Data
 df <- read.csv2("PH.csv", stringsAsFactors = TRUE)
@@ -11,7 +14,7 @@ df <- read.csv2("PH.csv", stringsAsFactors = TRUE)
 #Wide to Long
 df_long <- df %>%
   pivot_longer(
-    cols = c(FM1, FM2),  # column names
+    cols = c(PH1, PH2),  # column names
     names_to = "Rep",               # new column for rep
     values_to = "PH"               # new column for trait value
   )
@@ -22,13 +25,23 @@ head(df_long)
 
 # Looks good
 
-# Does Genotype influence CCM?
-
 model_fixed <- lmer(PH ~ Genotype + (1|Rep), data = df_long)
 
 anova(model_fixed)
 
-# yaaay it does
+emm <- emmeans(model_fixed, ~ Genotype)
+
+
+pairs(emm, adjust = "tukey")
+
+
+cld(emm,
+    alpha = 0.05,
+    Letters = letters,
+    adjust = "tukey"  
+)
+
+# genotype is significant
 
 # BLUP and EBLUP calculations
 

@@ -24,9 +24,25 @@ head(df_long)
 
 # Does Genotype influence CCM?
 
-model_fixed <- lmer(CCM ~ Genotype + (1|Rep), data = df_long)
+# Use a fixed model
+model_ccm_fixed <- lm(CCM ~ Genotype, data = df_long)
 
-anova(model_fixed)
+# ANOVA
+anova(model_ccm_fixed)
+
+# Tukey and emmeans
+emm_ccm <- emmeans(model_ccm_fixed, ~ Genotype)
+
+pairs(emm_ccm, adjust = "tukey")
+
+# CLD
+cld_ccm <- multcomp::cld(
+  emm_ccm,
+  adjust = "tukey",
+  Letters = letters
+)
+
+print(cld_ccm)
 
 # yaaay it does
 
