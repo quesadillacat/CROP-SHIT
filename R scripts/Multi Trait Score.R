@@ -53,3 +53,42 @@ df_sorted_by_number
 winners
 
 
+
+
+#ggplot ngl i had a friend help me with this shit
+
+library(ggplot2)
+library(dplyr)
+
+highlight_nums <- c(120, 145, 210, 271, 419, 424)
+
+df_plot <- df_ranked %>%
+  mutate(
+    AssystNum = as.numeric(sub("ASSYST-", "", Genotype)),
+    Highlight = ifelse(AssystNum %in% highlight_nums, "Relevant accessions", "Irrelevant accessions")
+  )
+
+plot <- ggplot(df_plot, aes(x = Genotype, y = MultiTraitScore, fill = Highlight)) +
+  geom_col() +
+  scale_fill_manual(values = c(
+    "Relevant accessions" = "darkgreen",
+    "Irrelevant accessions" = "lightblue"
+  )) +
+  scale_y_continuous(
+    breaks = seq(-6, 6, by = 1),
+    limits = c(-6, NA)      
+  ) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1, size = 12, face = "bold"),
+    axis.title.x = element_text(size = 14, margin = margin(t = 15)),
+    axis.title.y = element_text(size = 14, margin = margin(r = 15))
+  ) +
+  labs(
+    
+    x = "Genotype",
+    y = "Multi-Trait Score"
+  )
+
+ggsave("MultiTraitScore.png", plot = plot, width = 14, height = 7, dpi = 600)
+
