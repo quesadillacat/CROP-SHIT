@@ -9,84 +9,129 @@ editor: visual
 
 Overall:
 
-- Select 3 accessions that combine both adaptability and genetic diversity for a future OSR breeding project
+-   Select 3 accessions that combine both adaptability and genetic diversity for a future OSR breeding project
 
 Adaptability:
 
-- How good is the overall phenotypic performance of each accession?
+-   How good is the overall phenotypic performance of each accession?
 
 Diversity (from genotyping):
 
-- How genetically different are the accessions from each other?​
-
-
+-   How genetically different are the accessions from each other?​
 
 ## Phenotypical evaluation: Traits
 
 Growth & development:
 
-- Plant height, BBCH
-- Excluded: Flowering time
+-   Plant height, BBCH
+-   Excluded: Flowering time
 
 Biomass:
 
-- Fresh mass, dry mass
+-   Fresh mass, dry mass
 
 Yield component:
 
-- Hundred grain weight
+-   Hundred grain weight
 
 Physiology:
 
-- CCM
+-   CCM
 
 Seed quality:
 
-- Proteins, oil, glucosinolates etc
+-   Proteins, oil, glucosinolates etc
 
 ## What are BLUPs and EBLUPs?
 
 BLUP:
 
-- Corrected genetic value
-- Removes environmental + replicate effects
+-   Corrected genetic value
+-   Removes environmental + replicate effects
 
 EBLUP:
 
-- Overall mean + BLUP → final corrected performance of each genotype
+-   Overall mean + BLUP → final corrected performance of each genotype
 
 ## Phenotypical evaluation: Pipeline
 
-1. Testing genotypes for significance using LMMs
+1.  Testing genotypes for significance using LMMs
 
-    - Model: Trait = Genotype + (1 | Rep)
+    -   Model: Trait = Genotype + (1 \| Rep)
 
-2. Extracting BLUPs and EBLUPs
+2.  Extracting BLUPs and EBLUPs
 
-    - Model: Trait = 1 + (1 | Genotype) + (1 | Rep)
+    -   Model: Trait = 1 + (1 \| Genotype) + (1 \| Rep)
 
-3. Calculating multi-trait score using EBLUPs
+3.  Calculating multi-trait score using EBLUPs
 
-4. Ranking accessions after overall performance
+4.  Ranking accessions after overall performance
 
-## Why genetic diversity important??
+## Why genetic diversity important?
 
-- And how did we check for diversity in practical??
-- Mention shit like Jost's d, Ho, he maybe??
-- And reason for why diversity cool??
+-   And how did we check for diversity in practical?
+
+    -   Illumina 60k Assyst SNP Chip Assay on our plants
+
+-   Mention shit like Jost's d, Ho, he maybe
+
+    -   Jost's D a normalized measure of per-locus genetic diversity
+
+        -   accounts for heterozygosity in test population
+
+    -   Ho / He, Observed vs. Expected Heterozygosity, respectively
+
+-   And reason for why diversity necessary
+
+    -   US Corn epidemic 1969: all susceptible to Southern Corn Leaf Blight due to common shared ancestor
 
 ## PCA
 
-- What is PCA?
-- What are the axes?
-- What do the clusters represent?
+-   What is PCA
 
-## KASP? 
+    -   Analysis of patterns in data's spread across multiple test parameters
 
-- Explain Resistance
+    -   Distance from points to best-fit regression line (Sum of Squared Distances)
 
-## Final choices 
+    -   Condenses multidimensional data at some loss of information
 
-- why??
-- Good perform/bad perform pheno?
-- Good diversity yes?
+-   What are the axes
+
+    -   Components = 1D measure of data's projection onto best fit line (vector)
+
+        -   minimum sum of squares (eigenvalue)
+
+    -   PC2 orthogonal to PC1 ("all variation not explained by PC1")
+
+    -   Slope represents the relative *influence* each component contributes to the data's distribution
+
+-   What do the clusters represent?
+
+    -   Relatedness of the SNP assay results, broadly speaking
+
+## KASP Analysis
+
+-   Kompetitive Allele-Specific PCR, performed on material sampled during phenotyping
+
+-   Looking for Rlm7 allele of Wall-Assoc. Kinase-Like (WAKL)
+
+-   Alleles confer resistance to *L. maculans*, which causes blackleg disease
+
+-   A Allele \<- Rlm4
+
+-   C Allele \<- Rlm7/9
+
+## Final choices
+
+-   271
+    -   Highest multi-trait score
+    -   Spring type, diverse but warrants caution
+    -   AA Rlm4 homozygous, fair disease resistance
+-   424
+    -   Low performance Swede-type
+    -   CC Rlm7/9 homozygous, good disease resistance
+    -   Winter growth pattern similar to WOSR
+-   120
+    -   Only WOSR in our trial with positive score
+    -   target crop type
+-   Diverse, pull from distant branches, per PCA
