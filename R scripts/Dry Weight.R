@@ -4,6 +4,9 @@ library(tidyr)
 library(dplyr)
 library(lme4)
 library(lmerTest)
+library(emmeans)
+library(multcomp)
+library(multcompView)
 
 # Loading Data
 df <- read.csv2("DW.csv", stringsAsFactors = TRUE)
@@ -24,11 +27,25 @@ head(df_long)
 
 # Does Genotype influence CCM?
 
-model_fixed <- lmer(DW ~ Genotype + (1|Rep), data = df_long)
+model_dw_fixed <- lm(DW ~ Genotype, data = df_long)
 
-anova(model_fixed)
+anova(model_dw_fixed)
 
-# yaaay it does
+emm_dw <- emmeans(model_dw_fixed, ~ Genotype)
+
+pairs(emm_dw, adjust = "tukey")
+
+# cld
+
+cld_dw <- multcomp::cld(
+  emm_dw,
+  adjust = "tukey",
+  Letters = letters
+)
+
+print(cld_dw)
+
+# It does, big time!!!!
 
 # BLUP and EBLUP calculations
 

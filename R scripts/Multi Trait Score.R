@@ -52,6 +52,7 @@ df_ranked
 df_sorted_by_number
 winners
 
+
 pflzn.winners <- data.frame(
   accessions = c("BnASSYST_120", "BnASSYST_271", "BnASSYST_424"),
   name       = c("Darmor",       "Liho",         "Conqueror Bronze Green Top"),
