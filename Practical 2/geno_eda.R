@@ -1,55 +1,56 @@
-###########################################################################
-# Part 0
-# LOAD packages
-###########################################################################
+library(readxl)
+library(dplyr)
+library(tidyr)
+library(adegenet)
+library(hierfstat)
 
-# install package "adegenet" and package "hierfstat"
+kasp_dec3_raw <- read_excel("KASP shit/2025-12-03_081443.xlsx")
+kasp_dec4_raw <- read_excel("KASP shit/2025-12-04_084604.xlsx")
+kasp_mk130_dna <- read_excel("KASP shit/MK130_DNA_Nov2025_second_expierments_011_27_2025.xlsx")
 
-# set directory - please adapt
-setwd("D:/Documents/Genetik_der_Nutzpflanzendiversität/Teaching/MP128_GOCD/WS25_26/")
+pflzn <- data.frame(
+  accessions = c("BnASSYST_120", "BnASSYST_145", "BnASSYST_210", "BnASSYST_271", "BnASSYST_419", "BnASSYST_424"),
+  name       = c("Darmor",       "Hokkai 3-Go",  "RED RUSSIAN",  "Liho",         "Angus",        "Conqueror Bronze Green Top"),
+  type       = c("Winter OSR",   "Winter OSR",   "Siber. Kale",  "Spring OSR",   "swede",        "swede")
+  )
 
-# load package
-library("adegenet")
-library("hierfstat")
+# Read in SNP chip data, transpose, give column names from 1st row and trim
+snp_raw <- read.table("MK130_60k_ASSYST_selected.txt", header = T)
+snp <- data.frame(t(snp_raw))
+colnames(snp) <- snp[1,]
+snp <- snp[-1,]
 
-###########################################################################
-# Part 1
-# LOAD and FORMAT data
-###########################################################################
 
-snp<-read.table(file="MK130_60k_ASSYST_selected.txt", header = T)
+# Set accessions as row IDs, extract those as our individuals
+# Extract crop types as populations
+# indivs <- as.character(rownames(snp))
+# populations <- as.character(snp$type)
 
-# we need to transpose the data for the package
-t_snp<-data.frame(t(snp))
 
-# rename
-colnames(t_snp)<-t_snp[1,]
 
-# remove the name line
-t_snp<-t_snp[-1,]
+# to only grab our accessions
+snp_trim <- snp %>%
+  filter(row.names(snp) %in% pflzn$accessions)
 
-# extract individual names
-ind<-as.character(rownames(t_snp))
-# extract population names
-population<-as.character(t_snp$type)
+indivs <- as.character(rownames(snp_trim))
+populations <- as.character(snp_trim$type)
+pflzn %>%
+  mutate(pflzn$type = populations)
 
-# remove the type 
-t_snp<-t_snp[,-1]
+# trim off type (we'll use these extracted fields for genind instantiation)
+snp_2_genind <- snp_trim %>%
+  select(!type)
 
-####to reduce computing time and allow easy display, we only look at Chromosome A01:
-t_snp_a01<-t_snp[,-c(2674:52157)]
+#### to reduce computing time and allow easy display, we only look at Chromosome A01:
+# snp_a01 <- snp_2_genind[,-c(2674:52157)]
+snp_wholegenome <- snp_2_genind
+rm(snp_2_genind, snp_trim) # optional: rm intermediate data objects we're not using anymore
 
-# convert to genind object
-snp_data<-df2genind(t_snp_a01, ploidy=2, ind.names=ind, pop=population, sep="")
-# look at it
-snp_data
+# convert to genind
+snp_data<-df2genind(snp_wholegenome, ploidy=2, ind.names=indivs, pop=populations, sep="")
 
-###########################################################################
-# Part 2
-# CALCULATE  and DISPLAY genetic distance between accessions
-###########################################################################
-# Create hierfstat object first
 
+# GENETIC DISTANCE PCA PLOT
 snp_data_1 <- genind2hierfstat(snp_data)
 
 # calculate PCA
@@ -63,22 +64,18 @@ plot(x, cex=0.8, col=popcol,ax1=1, ax2=3)
 # plot PCA2/3
 plot(x, cex=0.8, col=popcol,ax1=2, ax2=3)
 
+# CALC GENETIC DIVERSITY
 
-###########################################################################
-# Part 3
-# CALCULATE  and DISPLAY measures of genetic diversity
-###########################################################################
+# No. alleles per locus
 
-# calculate number of alleles per locus
-
-number_of_alleles<-nAll(snp_data)
-mean(number_of_alleles)
+allele.num <- nAll(snp_data)
+allele.num.avg <- mean(number_of_alleles)
 
 plot(number_of_alleles, xlab="Loci number", ylab="Number of alleles", 
      main="Number of alleles per locus")
 
 # calculate allele richness
-allrich<-allelic.richness(snp_data,min.n=NULL,diploid=TRUE)
+allele.rich <- allelic.richness(snp_data,min.n=NULL,diploid=TRUE)
 head(allrich$Ar, 5) # head() call unnecessary?
 
 # calculate observed and expected heterozygosity
@@ -151,3 +148,22 @@ plot(locus_results$Fst, xlab="Loci number", ylab="Fst",
 points(locus_results$Fstp, col="green")
 
 
+
+
+
+
+
+
+
+
+
+
+###############################################################################
+# tidyverse re-write for my own readability reasons
+###############################################################################
+
+snp.ours <- snp_raw %>%
+  select(pflzn$accessions)
+
+indivs.ours <- pflzn$accessions
+populations.ours <- snp.ours

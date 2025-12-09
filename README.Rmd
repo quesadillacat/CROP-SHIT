@@ -116,7 +116,16 @@ document
 | BnASSYST-424    | Conqueror Bronze Green Top    | swede         |
 | BnASSYST-427    | Essex Model                   | swede         |
 
+Our Accessions:
 
+|    ASSYST_ID    |    Name                       |    TYPE       |
+| :-------------- | :---------------------------- | :------------ |
+| BnASSYST-120    | Darmor                        | Winter OSR    |
+| BnASSYST-145    | Hokkai 3-Go                   | Winter OSR    |
+| BnASSYST-210    | RED RUSSIAN                   | Siberian kale |
+| BnASSYST-271    | Liho                          | Spring OSR    |
+| BnASSYST-419    | Angus                         | swede         |
+| BnASSYST-424    | Conqueror Bronze Green Top    | swede         |
 
 
 # Notes
